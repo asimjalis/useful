@@ -32,7 +32,7 @@ Alternatively, in your code you can add this:
     (ns myproject
       (:use 
         [asimjalis.useful]))
-     
+
 ## License
 
 Copyright (c) 2014 Asim Jalis
@@ -41,5 +41,6 @@ For license details see LICENSE file.
 
 # Author
 
-Asim Jalis (asimjalis@gmail.com)    
-For more details see [asimjalis.com](http://asimjalis.com)    
+Asim Jalis (asimjalis@gmail.com)
+
+For more details see [asimjalis.com](http://asimjalis.com)
