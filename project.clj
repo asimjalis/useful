@@ -1,5 +1,5 @@
 (defproject com.asimjalis/useful "1.1.0-SNAPSHOT"
-  :description "Useful functions"
+  :description "Useful Clojure functions"
   :main asimjalis.useful
   :url "http://github.com/asimjalis/useful"
   :license {:name "Apache License, Version 2.0"
