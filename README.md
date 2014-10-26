@@ -10,7 +10,7 @@ If you have `lein-exec` installed and want to play with this library
 on the REPL, paste this into the REPL:
 
     (use '[leiningen.exec :only [deps]])
-    (deps '[[com.asimjalis/useful "1.1.0-SNAPSHOT"]])
+    (deps '[[asimjalis/useful "1.1.0-SNAPSHOT"]])
     (use 'asimjalis.useful)
     (println-err "hi")
 
@@ -21,7 +21,7 @@ If you want to include this library in a project, in your
 `project.clj` file, under `defproject`, modify your `:dependencies`,
 so they look like this:
 
-    :dependencies [[com.asimjalis/useful "1.1.0-SNAPSHOT"]]
+    :dependencies [[asimjalis/useful "1.1.0-SNAPSHOT"]]
 
 And then in your code or on the REPL add this:
 
