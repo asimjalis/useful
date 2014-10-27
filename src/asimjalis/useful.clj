@@ -47,16 +47,6 @@
      (pretty-string ~x)))
 
 
-;[Lein-exec]
-
-(def -main)
-
-(defn lein-exec-start []
-  (when-let [script-name (first *command-line-args*)]
-    (when (not= "repl" script-name)
-      (apply -main (rest *command-line-args*)))))
-
-
 ;[Macros]
 
 (defmacro test-block [func-name & expected-and-args]
