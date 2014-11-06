@@ -52,9 +52,9 @@
   (let [
         test-name (gensym)
         check-seq (->> expected-and-args 
-           (partition 2) 
-           (map (fn [[expected args]] `(is (= ~expected (~func ~@args))))))
-        decl (seq `[deftest ~test-name ~@check-seq])]
+          (partition 2) 
+          (map (fn [[expected args]] `(~'is (= ~expected (~func ~@args))))))
+        decl (seq `[~'deftest ~test-name ~@check-seq])]
     decl))
 
 (defmacro let-block [& bindings]
