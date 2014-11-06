@@ -50,13 +50,11 @@
 
 (defmacro defn-test [func & expected-and-args]
   (let [
-        is-sym (-> 'is symbol resolve)
-        deftest-sym (-> 'deftest symbol resolve)
         test-name (gensym)
         check-seq (->> expected-and-args 
            (partition 2) 
-           (map (fn [[expected args]] `(~is-sym (= ~expected (~func ~@args))))))
-        decl (seq `[~deftest-sym ~test-name ~@check-seq])]
+           (map (fn [[expected args]] `(is (= ~expected (~func ~@args))))))
+        decl (seq `[deftest ~test-name ~@check-seq])]
     decl))
 
 (defmacro let-block [& bindings]
