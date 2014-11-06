@@ -46,9 +46,13 @@
      (pretty-string ~x)))
 
 
-;[Macros]
-
-(defmacro defn-test [func & expected-and-args]
+(defmacro defn-test 
+  "Defines tests more concisely by specifying the function and then listing the expected values and vectors of arguments. For example: 
+  (defn-test str 
+    \"abc\" [\"a\" \"b\" \"c\"]
+    \"cde\" [\"c\" \"de\"])"
+  
+  [func & expected-and-args]
   (let [
         test-name (gensym)
         check-seq (->> expected-and-args 
@@ -63,7 +67,16 @@
   `(let [~@bindings]
     ~last-var)))
 
-(defmacro defn-let [func-name args & bindings]
+
+(defmacro defn-let 
+  "Defines functions that consist entirely of a sequence of lets. For example:
+  (defn-let date-to-string [m d y]
+    month (str m)
+    day   (str d)
+    year  (str y)
+    slash \"/\"
+    date  (str day slash month slash year))" 
+  [func-name args & bindings]
   (if (not (vector? args)) (throw "Expected args in vector for " (func-name)))
   `(defn ~func-name ~args
     (let-block ~@bindings)))
