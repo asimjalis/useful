@@ -3,7 +3,6 @@
   (:use 
     [clojure.pprint]
     [clojure.test      :only [deftest is run-tests]]
-    [clojure.template  :only [do-template]]
     [clojure.reflect]
     ))
 
@@ -49,13 +48,13 @@
 
 ;[Macros]
 
-(defmacro test-block [func-name & expected-and-args]
-  `(do-template [expected args] (is (= expected (apply ~(resolve (symbol func-name)) args)))
-    ~@expected-and-args))
-
-(defmacro defn-test [func-name & expected-and-args]
-  `(deftest ~(symbol (str "test-fun-" func-name )) 
-    (test-block ~func-name ~@expected-and-args))) 
+(defmacro defn-test [func & expected-and-args]
+  (let [test-name (gensym)
+        check-seq (->> expected-and-args 
+           (partition 2) 
+           (map (fn [[expected args]] `(is (= ~expected (~func ~@args))))))
+        decl (seq `[deftest ~test-name ~@check-seq])]
+    decl))
 
 (defmacro let-block [& bindings]
   (let [bindings-vec (vec bindings)
@@ -67,7 +66,6 @@
   (if (not (vector? args)) (throw "Expected args in vector for " (func-name)))
   `(defn ~func-name ~args
     (let-block ~@bindings)))
-
 
 ;[Show]
 
